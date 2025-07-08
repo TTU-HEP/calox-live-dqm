@@ -1,41 +1,46 @@
 import os
 
-html_root = "results/html"
-overview_file = os.path.join(html_root, "overview.html")
+ROOT_DIR = "results/html"
+OUTPUT_FILE = "docs/overview.html"
+os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
 
-# Collect all .html files (recursively) under home/html/, excluding overview.html
-entries = []
-for root, dirs, files in os.walk(html_root):
-    for f in files:
-        if f.endswith(".html") and f != "overview.html":
-            full_path = os.path.join(root, f)
-            rel_path = os.path.relpath(full_path, html_root)
-            entries.append(f'<li><a href="{rel_path}">{rel_path}</a></li>')
+html_entries = []
 
-# Build HTML content
-html_content = f"""<!DOCTYPE html>
+for root, dirs, files in os.walk(ROOT_DIR):
+    for file in sorted(files):
+        if file.endswith(".html"):
+            full_path = os.path.join(root, file)
+            # make path relative to GitHub Pages root
+            rel_path = os.path.relpath(full_path, "docs")
+            html_entries.append(rel_path)
+
+# Create HTML
+html = """<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Overview of All HTML Files</title>
+  <title>Overview of HTML Files</title>
   <style>
-    body {{ font-family: sans-serif; padding: 20px; }}
-    h1 {{ margin-bottom: 20px; }}
-    ul {{ list-style-type: none; padding: 0; }}
-    li {{ margin: 8px 0; }}
+    body { font-family: sans-serif; padding: 20px; }
+    h1 { margin-bottom: 20px; }
+    ul { list-style-type: none; padding: 0; }
+    li { margin: 8px 0; }
+    a { text-decoration: none; color: #007acc; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-  <h1>Overview of All HTML Files</h1>
+  <h1>Available HTML Reports</h1>
   <ul>
-    {''.join(entries)}
-  </ul>
+"""
+
+for path in sorted(html_entries):
+    html += f'    <li><a href="../{path}" target="_blank">{path}</a></li>\n'
+
+html += """  </ul>
 </body>
 </html>
 """
 
-# Save the overview file
-with open(overview_file, "w") as f:
-    f.write(html_content)
-
-print(f"✅ Generated: {overview_file}")
+with open(OUTPUT_FILE, "w") as f:
+    f.write(html)
