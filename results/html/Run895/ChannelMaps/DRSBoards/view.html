@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>PNG Plot Viewer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .top-link {
+      margin-bottom: 15px;
+    }
+
+    .top-link a {
+      font-size: 16px;
+      text-decoration: none;
+      color: #0066cc;
+    }
+
+    .path-info {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    input {
+      font-size: 16px;
+      padding: 5px;
+      width: 400px;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .plot {
+      border: 1px solid #ccc;
+      padding: 5px;
+      text-align: center;
+    }
+
+    .filename {
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 5px;
+      word-break: break-word;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    img:hover {
+      transform: scale(1.02);
+    }
+
+    @media (max-width: 1200px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-link">
+    <a href="../">⬆️ Go Up One Directory</a>
+  </div>
+
+  <h1>PNG Plot Viewer</h1>
+
+  <div class="path-info">HTML generated at: <code>/home/yongbinfeng/Desktop/CaloX/CaloXDataAnalysis/html/Run895/ChannelMaps/DRSBoards/view.html</code></div>
+  <div class="path-info">PNG directory: <code>/home/yongbinfeng/Desktop/CaloX/CaloXDataAnalysis/plots/Run895/ChannelMaps</code></div>
+
+  <input type="text" id="filterInput" placeholder="Filter by filename..." onkeyup="filterPlots()">
+
+  <div id="plotContainer" class="grid">
+    <div class="plot" data-name="drs_boards_run895_cer_png">
+      <div class="filename">DRS_Boards_Run895_Cer.png</div>
+      <a href="../../../../plots/Run895/ChannelMaps/DRS_Boards_Run895_Cer.png" target="_blank">
+        <img src="../../../../plots/Run895/ChannelMaps/DRS_Boards_Run895_Cer.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="drs_boards_run895_sci_png">
+      <div class="filename">DRS_Boards_Run895_Sci.png</div>
+      <a href="../../../../plots/Run895/ChannelMaps/DRS_Boards_Run895_Sci.png" target="_blank">
+        <img src="../../../../plots/Run895/ChannelMaps/DRS_Boards_Run895_Sci.png" alt="">
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function filterPlots() {
+      const filter = document.getElementById("filterInput").value.toLowerCase();
+      const plots = document.getElementsByClassName("plot");
+
+      for (let plot of plots) {
+        const name = plot.getAttribute("data-name");
+        plot.style.display = name.includes(filter) ? "" : "none";
+      }
+    }
+  </script>
+
+</body>
+</html>
