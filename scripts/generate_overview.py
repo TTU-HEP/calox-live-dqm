@@ -17,7 +17,7 @@ for root, _, files in os.walk(ROOT_DIR):
             rel_path = os.path.relpath(full_path, ".")  # relative to repo root
             run_path = rel_path.replace("results/html/", "")
             web_path = f"/{REPO_NAME}/{rel_path}"
-            html_entries.append((web_path, rel_path))
+            html_entries.append((web_path, run_path))
 
 # Generate overview HTML
 html = """<!DOCTYPE html>
@@ -39,8 +39,8 @@ html = """<!DOCTYPE html>
   <ul>
 """
 
-for web_path, rel_path in sorted(html_entries):
-    html += f'    <li><a href="{web_path}" target="_blank">{rel_path}</a></li>\n'
+for web_path, run_path in sorted(html_entries):
+    html += f'    <li><a href="{web_path}" target="_blank">{run_path}</a></li>\n'
 
 html += """  </ul>
 </body>
