@@ -1,20 +1,24 @@
 import os
 
+# Settings
+REPO_NAME = "calox-live-dqm"
 ROOT_DIR = "results/html"
 OUTPUT_FILE = "docs/overview.html"
+
+# Ensure output directory exists
 os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
 
+# Collect HTML file paths
 html_entries = []
-
-for root, dirs, files in os.walk(ROOT_DIR):
+for root, _, files in os.walk(ROOT_DIR):
     for file in sorted(files):
         if file.endswith(".html"):
             full_path = os.path.join(root, file)
-            # make path relative to GitHub Pages root
-            rel_path = os.path.relpath(full_path, "docs")
-            html_entries.append(rel_path)
+            rel_path = os.path.relpath(full_path, ".")  # relative to repo root
+            web_path = f"/{REPO_NAME}/{rel_path}"
+            html_entries.append((web_path, rel_path))
 
-# Create HTML
+# Generate overview HTML
 html = """<!DOCTYPE html>
 <html>
 <head>
@@ -30,12 +34,12 @@ html = """<!DOCTYPE html>
   </style>
 </head>
 <body>
-  <h1>Available HTML Reports</h1>
+  <h1>Available HTML Files</h1>
   <ul>
 """
 
-for path in sorted(html_entries):
-    html += f'    <li><a href="../{path}" target="_blank">{path}</a></li>\n'
+for web_path, rel_path in sorted(html_entries):
+    html += f'    <li><a href="{web_path}" target="_blank">{rel_path}</a></li>\n'
 
 html += """  </ul>
 </body>
