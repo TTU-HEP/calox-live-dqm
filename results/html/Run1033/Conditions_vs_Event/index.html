@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>PNG Plot Viewer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .top-link {
+      margin-bottom: 15px;
+    }
+
+    .top-link a {
+      font-size: 16px;
+      text-decoration: none;
+      color: #0066cc;
+    }
+
+    .path-info {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    input {
+      font-size: 16px;
+      padding: 5px;
+      width: 400px;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .plot {
+      border: 1px solid #ccc;
+      padding: 5px;
+      text-align: center;
+    }
+
+    .filename {
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 5px;
+      word-break: break-word;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    img:hover {
+      transform: scale(1.02);
+    }
+
+    @media (max-width: 1200px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-link">
+    <a href="../">⬆️ Go Up One Directory</a>
+  </div>
+
+  <h1>PNG Plot Viewer</h1>
+
+  <div class="path-info">HTML generated at: <code>/lustre/work/yofeng/CaloXDataAnalysis/html/Run1033/Conditions_vs_Event/index.html</code></div>
+  <div class="path-info">PNG directory: <code>/lustre/work/yofeng/CaloXDataAnalysis/plots/Run1033/Conditions_vs_Event</code></div>
+
+  <input type="text" id="filterInput" placeholder="Filter by filename..." onkeyup="filterPlots()">
+
+  <div id="plotContainer" class="grid">
+    <div class="plot" data-name="conditions_sipmhv_vs_event_png">
+      <div class="filename">Conditions_SipmHV_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_SipmHV_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_SipmHV_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_sipmi_vs_event_png">
+      <div class="filename">Conditions_SipmI_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_SipmI_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_SipmI_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_tempdet_vs_event_png">
+      <div class="filename">Conditions_TempDET_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_TempDET_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_TempDET_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_tempfpga_vs_event_png">
+      <div class="filename">Conditions_TempFPGA_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_TempFPGA_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_TempFPGA_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board0_sipmhv_vs_event_png">
+      <div class="filename">Conditions_Board0_SipmHV_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board0_SipmHV_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board0_SipmHV_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board0_sipmi_vs_event_png">
+      <div class="filename">Conditions_Board0_SipmI_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board0_SipmI_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board0_SipmI_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board0_tempdet_vs_event_png">
+      <div class="filename">Conditions_Board0_TempDET_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board0_TempDET_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board0_TempDET_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board0_tempfpga_vs_event_png">
+      <div class="filename">Conditions_Board0_TempFPGA_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board0_TempFPGA_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board0_TempFPGA_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board1_sipmhv_vs_event_png">
+      <div class="filename">Conditions_Board1_SipmHV_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board1_SipmHV_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board1_SipmHV_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board1_sipmi_vs_event_png">
+      <div class="filename">Conditions_Board1_SipmI_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board1_SipmI_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board1_SipmI_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board1_tempdet_vs_event_png">
+      <div class="filename">Conditions_Board1_TempDET_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board1_TempDET_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board1_TempDET_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board1_tempfpga_vs_event_png">
+      <div class="filename">Conditions_Board1_TempFPGA_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board1_TempFPGA_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board1_TempFPGA_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board2_sipmhv_vs_event_png">
+      <div class="filename">Conditions_Board2_SipmHV_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board2_SipmHV_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board2_SipmHV_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board2_sipmi_vs_event_png">
+      <div class="filename">Conditions_Board2_SipmI_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board2_SipmI_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board2_SipmI_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board2_tempdet_vs_event_png">
+      <div class="filename">Conditions_Board2_TempDET_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board2_TempDET_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board2_TempDET_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board2_tempfpga_vs_event_png">
+      <div class="filename">Conditions_Board2_TempFPGA_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board2_TempFPGA_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board2_TempFPGA_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board4_sipmhv_vs_event_png">
+      <div class="filename">Conditions_Board4_SipmHV_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board4_SipmHV_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board4_SipmHV_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board4_sipmi_vs_event_png">
+      <div class="filename">Conditions_Board4_SipmI_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board4_SipmI_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board4_SipmI_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board4_tempdet_vs_event_png">
+      <div class="filename">Conditions_Board4_TempDET_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board4_TempDET_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board4_TempDET_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board4_tempfpga_vs_event_png">
+      <div class="filename">Conditions_Board4_TempFPGA_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board4_TempFPGA_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board4_TempFPGA_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board5_sipmhv_vs_event_png">
+      <div class="filename">Conditions_Board5_SipmHV_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board5_SipmHV_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board5_SipmHV_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board5_sipmi_vs_event_png">
+      <div class="filename">Conditions_Board5_SipmI_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board5_SipmI_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board5_SipmI_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board5_tempdet_vs_event_png">
+      <div class="filename">Conditions_Board5_TempDET_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board5_TempDET_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board5_TempDET_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board5_tempfpga_vs_event_png">
+      <div class="filename">Conditions_Board5_TempFPGA_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board5_TempFPGA_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board5_TempFPGA_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board6_sipmhv_vs_event_png">
+      <div class="filename">Conditions_Board6_SipmHV_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board6_SipmHV_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board6_SipmHV_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board6_sipmi_vs_event_png">
+      <div class="filename">Conditions_Board6_SipmI_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board6_SipmI_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board6_SipmI_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board6_tempdet_vs_event_png">
+      <div class="filename">Conditions_Board6_TempDET_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board6_TempDET_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board6_TempDET_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board6_tempfpga_vs_event_png">
+      <div class="filename">Conditions_Board6_TempFPGA_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board6_TempFPGA_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board6_TempFPGA_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board7_sipmhv_vs_event_png">
+      <div class="filename">Conditions_Board7_SipmHV_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board7_SipmHV_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board7_SipmHV_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board7_sipmi_vs_event_png">
+      <div class="filename">Conditions_Board7_SipmI_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board7_SipmI_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board7_SipmI_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board7_tempdet_vs_event_png">
+      <div class="filename">Conditions_Board7_TempDET_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board7_TempDET_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board7_TempDET_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board7_tempfpga_vs_event_png">
+      <div class="filename">Conditions_Board7_TempFPGA_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board7_TempFPGA_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board7_TempFPGA_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board8_sipmhv_vs_event_png">
+      <div class="filename">Conditions_Board8_SipmHV_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board8_SipmHV_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board8_SipmHV_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board8_sipmi_vs_event_png">
+      <div class="filename">Conditions_Board8_SipmI_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board8_SipmI_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board8_SipmI_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board8_tempdet_vs_event_png">
+      <div class="filename">Conditions_Board8_TempDET_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board8_TempDET_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board8_TempDET_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board8_tempfpga_vs_event_png">
+      <div class="filename">Conditions_Board8_TempFPGA_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board8_TempFPGA_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board8_TempFPGA_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board9_sipmhv_vs_event_png">
+      <div class="filename">Conditions_Board9_SipmHV_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board9_SipmHV_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board9_SipmHV_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board9_sipmi_vs_event_png">
+      <div class="filename">Conditions_Board9_SipmI_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board9_SipmI_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board9_SipmI_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board9_tempdet_vs_event_png">
+      <div class="filename">Conditions_Board9_TempDET_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board9_TempDET_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board9_TempDET_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board9_tempfpga_vs_event_png">
+      <div class="filename">Conditions_Board9_TempFPGA_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board9_TempFPGA_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board9_TempFPGA_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board10_sipmhv_vs_event_png">
+      <div class="filename">Conditions_Board10_SipmHV_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board10_SipmHV_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board10_SipmHV_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board10_sipmi_vs_event_png">
+      <div class="filename">Conditions_Board10_SipmI_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board10_SipmI_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board10_SipmI_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board10_tempdet_vs_event_png">
+      <div class="filename">Conditions_Board10_TempDET_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board10_TempDET_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board10_TempDET_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board10_tempfpga_vs_event_png">
+      <div class="filename">Conditions_Board10_TempFPGA_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board10_TempFPGA_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board10_TempFPGA_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board12_sipmhv_vs_event_png">
+      <div class="filename">Conditions_Board12_SipmHV_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board12_SipmHV_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board12_SipmHV_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board12_sipmi_vs_event_png">
+      <div class="filename">Conditions_Board12_SipmI_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board12_SipmI_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board12_SipmI_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board12_tempdet_vs_event_png">
+      <div class="filename">Conditions_Board12_TempDET_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board12_TempDET_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board12_TempDET_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board12_tempfpga_vs_event_png">
+      <div class="filename">Conditions_Board12_TempFPGA_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board12_TempFPGA_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board12_TempFPGA_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board13_sipmhv_vs_event_png">
+      <div class="filename">Conditions_Board13_SipmHV_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board13_SipmHV_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board13_SipmHV_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board13_sipmi_vs_event_png">
+      <div class="filename">Conditions_Board13_SipmI_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board13_SipmI_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board13_SipmI_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board13_tempdet_vs_event_png">
+      <div class="filename">Conditions_Board13_TempDET_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board13_TempDET_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board13_TempDET_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board13_tempfpga_vs_event_png">
+      <div class="filename">Conditions_Board13_TempFPGA_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board13_TempFPGA_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board13_TempFPGA_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board3_sipmhv_vs_event_png">
+      <div class="filename">Conditions_Board3_SipmHV_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board3_SipmHV_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board3_SipmHV_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board3_sipmi_vs_event_png">
+      <div class="filename">Conditions_Board3_SipmI_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board3_SipmI_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board3_SipmI_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board3_tempdet_vs_event_png">
+      <div class="filename">Conditions_Board3_TempDET_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board3_TempDET_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board3_TempDET_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board3_tempfpga_vs_event_png">
+      <div class="filename">Conditions_Board3_TempFPGA_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board3_TempFPGA_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board3_TempFPGA_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board11_sipmhv_vs_event_png">
+      <div class="filename">Conditions_Board11_SipmHV_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board11_SipmHV_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board11_SipmHV_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board11_sipmi_vs_event_png">
+      <div class="filename">Conditions_Board11_SipmI_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board11_SipmI_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board11_SipmI_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board11_tempdet_vs_event_png">
+      <div class="filename">Conditions_Board11_TempDET_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board11_TempDET_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board11_TempDET_vs_Event.png" alt="">
+      </a>
+    </div>
+    <div class="plot" data-name="conditions_board11_tempfpga_vs_event_png">
+      <div class="filename">Conditions_Board11_TempFPGA_vs_Event.png</div>
+      <a href="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board11_TempFPGA_vs_Event.png" target="_blank">
+        <img src="../../../plots/Run1033/Conditions_vs_Event/Conditions_Board11_TempFPGA_vs_Event.png" alt="">
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function filterPlots() {
+      const filter = document.getElementById("filterInput").value.toLowerCase();
+      const plots = document.getElementsByClassName("plot");
+
+      for (let plot of plots) {
+        const name = plot.getAttribute("data-name");
+        plot.style.display = name.includes(filter) ? "" : "none";
+      }
+    }
+  </script>
+
+</body>
+</html>
