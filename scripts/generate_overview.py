@@ -48,3 +48,4 @@ html += """  </ul>
 
 with open(OUTPUT_FILE, "w") as f:
     f.write(html)
+    print(f"Overview generated at {OUTPUT_FILE}")
