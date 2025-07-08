@@ -15,6 +15,7 @@ for root, _, files in os.walk(ROOT_DIR):
         if file.endswith(".html"):
             full_path = os.path.join(root, file)
             rel_path = os.path.relpath(full_path, ".")  # relative to repo root
+            run_path = rel_path.replace("results/html/", "")
             web_path = f"/{REPO_NAME}/{rel_path}"
             html_entries.append((web_path, rel_path))
 
@@ -34,7 +35,7 @@ html = """<!DOCTYPE html>
   </style>
 </head>
 <body>
-  <h1>Available HTML Files</h1>
+  <h1>CaloX Test Beam DQM Plots</h1>
   <ul>
 """
 
