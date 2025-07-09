@@ -180,8 +180,10 @@ for run_name in sorted(grouped_entries.keys()):
     for category in sorted(category_map.keys()):
         html += f'      <details>\n        <summary>{category}</summary>\n        <ul>\n'
         for web_path, inner_path in sorted(category_map[category], key=lambda tup: tup[1]):
+            parts = inner_path.split("/")
+            display_name = "/".join(parts[1:]) if len(parts) > 1 else parts[0]
             html += f'          <li>\n'
-            html += f'            <a href="{web_path}" target="_blank">{inner_path}</a>\n'
+            html += f'            <a href="{web_path}" target="_blank">{display_name}</a>\n'
             html += f'            <details class="preview">\n'
             html += f'              <summary style="font-size: 0.9em; color: #444;">Preview</summary>\n'
             html += f'              <div class="iframe-container" data-src="{web_path}"></div>\n'
