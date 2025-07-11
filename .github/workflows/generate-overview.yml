@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'results/html/**'
+      - 'results/plots/**'
       - 'scripts/generate_overview.py'
   workflow_dispatch:
 
