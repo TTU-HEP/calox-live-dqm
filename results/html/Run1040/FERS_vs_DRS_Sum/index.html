@@ -16,8 +16,9 @@
     }
 
     .timestamp {
-      font-size: 13px;
-      color: #666;
+      font-size: 15px;
+      font-weight: bold;
+      color: #444;
       margin-bottom: 20px;
     }
 
@@ -41,6 +42,13 @@
       padding: 5px;
       width: 400px;
       margin-right: 10px;
+    }
+
+    button {
+      font-size: 14px;
+      padding: 5px 10px;
+      margin-left: 10px;
+      cursor: pointer;
     }
 
     .grid {
@@ -93,12 +101,13 @@
 <body>
 
   <h1>PNG Plot Viewer</h1>
-  <div class="timestamp">Generated on: July 10, 2025, 01:32 AM</div>
+  <div class="timestamp">Generated on: July 11, 2025, 03:56 AM CEST</div>
 
   <div class="controls">
     <input type="text" id="filterInput" placeholder="Filter by filename..." onkeyup="filterPlots()">
     <label><input type="checkbox" id="regexToggle" onchange="filterPlots()"> Use Wildcard/Regex</label>
     <label><input type="checkbox" id="caseToggle" onchange="filterPlots()"> Case Sensitive</label>
+    <button onclick="clearFilter()">Clear Filter</button>
   </div>
 
   <div id="plotContainer" class="grid">
@@ -177,11 +186,31 @@
   </div>
 
   <script>
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        filter: params.get("filter") || "",
+        regex: params.get("regex") === "1",
+        caseSensitive: params.get("case") === "1",
+      };
+    }
+
+    function updateURLParams(filter, regex, caseSensitive) {
+      const params = new URLSearchParams();
+      if (filter) params.set("filter", filter);
+      if (regex) params.set("regex", "1");
+      if (caseSensitive) params.set("case", "1");
+      const newUrl = `${window.location.pathname}?${params.toString()}`;
+      history.replaceState(null, "", newUrl);
+    }
+
     function filterPlots() {
       const input = document.getElementById("filterInput").value.trim();
       const useRegex = document.getElementById("regexToggle").checked;
       const caseSensitive = document.getElementById("caseToggle").checked;
       const plots = document.getElementsByClassName("plot");
+
+      updateURLParams(input, useRegex, caseSensitive);
 
       for (let plot of plots) {
         const name = plot.getAttribute("data-filename");
@@ -207,6 +236,22 @@
         plot.style.display = match ? "" : "none";
       }
     }
+
+    function clearFilter() {
+      document.getElementById("filterInput").value = "";
+      document.getElementById("regexToggle").checked = false;
+      document.getElementById("caseToggle").checked = false;
+      history.replaceState(null, "", window.location.pathname);
+      filterPlots();
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const { filter, regex, caseSensitive } = getQueryParams();
+      document.getElementById("filterInput").value = filter;
+      document.getElementById("regexToggle").checked = regex;
+      document.getElementById("caseToggle").checked = caseSensitive;
+      filterPlots();
+    });
   </script>
 
 </body>
