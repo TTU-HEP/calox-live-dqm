@@ -7,34 +7,48 @@
     body {
       font-family: sans-serif;
       padding: 20px;
+      margin: 0;
     }
 
     h1 {
       font-size: 20px;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
 
-    .top-link {
-      margin-bottom: 15px;
-    }
-
-    .top-link a {
-      font-size: 16px;
-      text-decoration: none;
-      color: #0066cc;
-    }
-
-    .path-info {
-      font-size: 14px;
+    .timestamp {
+      font-size: 15px;
+      font-weight: bold;
       color: #444;
       margin-bottom: 20px;
     }
 
-    input {
+    .controls {
+      position: sticky;
+      top: 0;
+      background: white;
+      padding: 10px 0;
+      z-index: 10;
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 15px;
+    }
+
+    .controls label {
+      margin-right: 15px;
+      font-size: 14px;
+    }
+
+    input[type="text"] {
       font-size: 16px;
       padding: 5px;
       width: 400px;
-      margin-bottom: 20px;
+      margin-right: 10px;
+    }
+
+    button {
+      font-size: 14px;
+      padding: 5px 10px;
+      margin-left: 10px;
+      cursor: pointer;
     }
 
     .grid {
@@ -77,47 +91,107 @@
       .grid {
         grid-template-columns: 1fr;
       }
+      input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="top-link">
-    <a href="../">⬆️ Go Up One Directory</a>
+  <h1>PNG Plot Viewer</h1>
+  <div class="timestamp">Generated on: July 25, 2025, 08:35 PM CEST</div>
+
+  <div class="controls">
+    <input type="text" id="filterInput" placeholder="Filter by filename..." onkeyup="filterPlots()">
+    <label><input type="checkbox" id="regexToggle" onchange="filterPlots()"> Use Wildcard/Regex</label>
+    <label><input type="checkbox" id="caseToggle" onchange="filterPlots()"> Case Sensitive</label>
+    <button onclick="clearFilter()">Clear Filter</button>
   </div>
 
-  <h1>PNG Plot Viewer</h1>
-
-  <div class="path-info">HTML generated at: <code>/lustre/work/yofeng/CaloXDataAnalysis/html/Run1033/HodoTrigger_subtractMedian/index.html</code></div>
-  <div class="path-info">PNG directory: <code>/lustre/work/yofeng/CaloXDataAnalysis/plots/Run1033/HodoTrigger</code></div>
-
-  <input type="text" id="filterInput" placeholder="Filter by filename..." onkeyup="filterPlots()">
-
   <div id="plotContainer" class="grid">
-    <div class="plot" data-name="hodotrigger_drs_board0_group2_channel0_subtractmedian_png">
+    <div class="plot" data-filename="HodoTrigger_DRS_Board0_Group2_Channel0_subtractMedian.png">
       <div class="filename">HodoTrigger_DRS_Board0_Group2_Channel0_subtractMedian.png</div>
       <a href="../../../plots/Run1033/HodoTrigger/HodoTrigger_DRS_Board0_Group2_Channel0_subtractMedian.png" target="_blank">
-        <img src="../../../plots/Run1033/HodoTrigger/HodoTrigger_DRS_Board0_Group2_Channel0_subtractMedian.png" alt="">
+        <img src="../../../plots/Run1033/HodoTrigger/HodoTrigger_DRS_Board0_Group2_Channel0_subtractMedian.png" alt="HodoTrigger_DRS_Board0_Group2_Channel0_subtractMedian.png">
       </a>
     </div>
-    <div class="plot" data-name="hodotrigger_drs_board0_group2_channel1_subtractmedian_png">
+    <div class="plot" data-filename="HodoTrigger_DRS_Board0_Group2_Channel1_subtractMedian.png">
       <div class="filename">HodoTrigger_DRS_Board0_Group2_Channel1_subtractMedian.png</div>
       <a href="../../../plots/Run1033/HodoTrigger/HodoTrigger_DRS_Board0_Group2_Channel1_subtractMedian.png" target="_blank">
-        <img src="../../../plots/Run1033/HodoTrigger/HodoTrigger_DRS_Board0_Group2_Channel1_subtractMedian.png" alt="">
+        <img src="../../../plots/Run1033/HodoTrigger/HodoTrigger_DRS_Board0_Group2_Channel1_subtractMedian.png" alt="HodoTrigger_DRS_Board0_Group2_Channel1_subtractMedian.png">
       </a>
     </div>
   </div>
 
   <script>
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        filter: params.get("filter") || "",
+        regex: params.get("regex") === "1",
+        caseSensitive: params.get("case") === "1",
+      };
+    }
+
+    function updateURLParams(filter, regex, caseSensitive) {
+      const params = new URLSearchParams();
+      if (filter) params.set("filter", filter);
+      if (regex) params.set("regex", "1");
+      if (caseSensitive) params.set("case", "1");
+      const newUrl = `${window.location.pathname}?${params.toString()}`;
+      history.replaceState(null, "", newUrl);
+    }
+
     function filterPlots() {
-      const filter = document.getElementById("filterInput").value.toLowerCase();
+      const input = document.getElementById("filterInput").value.trim();
+      const useRegex = document.getElementById("regexToggle").checked;
+      const caseSensitive = document.getElementById("caseToggle").checked;
       const plots = document.getElementsByClassName("plot");
 
+      updateURLParams(input, useRegex, caseSensitive);
+
       for (let plot of plots) {
-        const name = plot.getAttribute("data-name");
-        plot.style.display = name.includes(filter) ? "" : "none";
+        const name = plot.getAttribute("data-filename");
+        let match = false;
+
+        if (useRegex) {
+          try {
+            const escaped = input.replace(/[-\/\^$+?.()|[\]{{}}]/g, '\\$&')
+                                 .replace(/\*/g, '.*')
+                                 .replace(/\?/g, '.');
+            const flags = caseSensitive ? "" : "i";
+            const regex = new RegExp(escaped, flags);
+            match = regex.test(name);
+          } catch (e) {
+            match = false;
+          }
+        } else {
+          const nameToTest = caseSensitive ? name : name.toLowerCase();
+          const inputToTest = caseSensitive ? input : input.toLowerCase();
+          match = nameToTest.includes(inputToTest);
+        }
+
+        plot.style.display = match ? "" : "none";
       }
     }
+
+    function clearFilter() {
+      document.getElementById("filterInput").value = "";
+      document.getElementById("regexToggle").checked = false;
+      document.getElementById("caseToggle").checked = false;
+      history.replaceState(null, "", window.location.pathname);
+      filterPlots();
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const { filter, regex, caseSensitive } = getQueryParams();
+      document.getElementById("filterInput").value = filter;
+      document.getElementById("regexToggle").checked = regex;
+      document.getElementById("caseToggle").checked = caseSensitive;
+      filterPlots();
+    });
   </script>
 
 </body>
