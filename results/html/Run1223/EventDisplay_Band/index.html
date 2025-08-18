@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>PNG Plot Viewer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+    .timestamp {
+      font-size: 15px;
+      font-weight: bold;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .controls {
+      position: sticky;
+      top: 0;
+      background: white;
+      padding: 10px 0;
+      z-index: 10;
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 15px;
+    }
+
+    .controls label {
+      margin-right: 15px;
+      font-size: 14px;
+    }
+
+    input[type="text"] {
+      font-size: 16px;
+      padding: 5px;
+      width: 400px;
+      margin-right: 10px;
+    }
+
+    button {
+      font-size: 14px;
+      padding: 5px 10px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .plot {
+      border: 1px solid #ccc;
+      padding: 5px;
+      text-align: center;
+    }
+
+    .filename {
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 5px;
+      word-break: break-word;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    img:hover {
+      transform: scale(1.02);
+    }
+
+    @media (max-width: 1200px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>PNG Plot Viewer</h1>
+  <div class="timestamp">Generated on: August 18, 2025, 12:50 AM CEST</div>
+
+  <div class="controls">
+    <input type="text" id="filterInput" placeholder="Filter by filename..." onkeyup="filterPlots()">
+    <label><input type="checkbox" id="regexToggle" onchange="filterPlots()"> Use Wildcard/Regex</label>
+    <label><input type="checkbox" id="caseToggle" onchange="filterPlots()"> Case Sensitive</label>
+    <button onclick="clearFilter()">Clear Filter</button>
+  </div>
+
+  <div id="plotContainer" class="grid">
+    <div class="plot" data-filename="EventDisplay_Run1223_Event3704_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event3704_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3704_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3704_Cer.png" alt="EventDisplay_Run1223_Event3704_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event3704_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event3704_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3704_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3704_Sci.png" alt="EventDisplay_Run1223_Event3704_Sci.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event3102_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event3102_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3102_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3102_Cer.png" alt="EventDisplay_Run1223_Event3102_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event3102_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event3102_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3102_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3102_Sci.png" alt="EventDisplay_Run1223_Event3102_Sci.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event495_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event495_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event495_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event495_Cer.png" alt="EventDisplay_Run1223_Event495_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event495_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event495_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event495_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event495_Sci.png" alt="EventDisplay_Run1223_Event495_Sci.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event3263_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event3263_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3263_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3263_Cer.png" alt="EventDisplay_Run1223_Event3263_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event3263_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event3263_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3263_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3263_Sci.png" alt="EventDisplay_Run1223_Event3263_Sci.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event2349_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event2349_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event2349_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event2349_Cer.png" alt="EventDisplay_Run1223_Event2349_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event2349_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event2349_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event2349_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event2349_Sci.png" alt="EventDisplay_Run1223_Event2349_Sci.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event177_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event177_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event177_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event177_Cer.png" alt="EventDisplay_Run1223_Event177_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event177_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event177_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event177_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event177_Sci.png" alt="EventDisplay_Run1223_Event177_Sci.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event169_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event169_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event169_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event169_Cer.png" alt="EventDisplay_Run1223_Event169_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event169_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event169_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event169_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event169_Sci.png" alt="EventDisplay_Run1223_Event169_Sci.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event520_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event520_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event520_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event520_Cer.png" alt="EventDisplay_Run1223_Event520_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event520_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event520_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event520_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event520_Sci.png" alt="EventDisplay_Run1223_Event520_Sci.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event1222_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event1222_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event1222_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event1222_Cer.png" alt="EventDisplay_Run1223_Event1222_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event1222_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event1222_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event1222_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event1222_Sci.png" alt="EventDisplay_Run1223_Event1222_Sci.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event1289_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event1289_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event1289_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event1289_Cer.png" alt="EventDisplay_Run1223_Event1289_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event1289_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event1289_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event1289_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event1289_Sci.png" alt="EventDisplay_Run1223_Event1289_Sci.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event2840_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event2840_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event2840_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event2840_Cer.png" alt="EventDisplay_Run1223_Event2840_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event2840_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event2840_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event2840_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event2840_Sci.png" alt="EventDisplay_Run1223_Event2840_Sci.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event3295_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event3295_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3295_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3295_Cer.png" alt="EventDisplay_Run1223_Event3295_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event3295_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event3295_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3295_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3295_Sci.png" alt="EventDisplay_Run1223_Event3295_Sci.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event157_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event157_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event157_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event157_Cer.png" alt="EventDisplay_Run1223_Event157_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event157_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event157_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event157_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event157_Sci.png" alt="EventDisplay_Run1223_Event157_Sci.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event3166_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event3166_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3166_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3166_Cer.png" alt="EventDisplay_Run1223_Event3166_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event3166_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event3166_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3166_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3166_Sci.png" alt="EventDisplay_Run1223_Event3166_Sci.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event1125_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event1125_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event1125_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event1125_Cer.png" alt="EventDisplay_Run1223_Event1125_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event1125_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event1125_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event1125_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event1125_Sci.png" alt="EventDisplay_Run1223_Event1125_Sci.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event3924_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event3924_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3924_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3924_Cer.png" alt="EventDisplay_Run1223_Event3924_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event3924_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event3924_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3924_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3924_Sci.png" alt="EventDisplay_Run1223_Event3924_Sci.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event3539_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event3539_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3539_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3539_Cer.png" alt="EventDisplay_Run1223_Event3539_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event3539_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event3539_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3539_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3539_Sci.png" alt="EventDisplay_Run1223_Event3539_Sci.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event3842_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event3842_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3842_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3842_Cer.png" alt="EventDisplay_Run1223_Event3842_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event3842_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event3842_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3842_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event3842_Sci.png" alt="EventDisplay_Run1223_Event3842_Sci.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event2319_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event2319_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event2319_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event2319_Cer.png" alt="EventDisplay_Run1223_Event2319_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event2319_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event2319_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event2319_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event2319_Sci.png" alt="EventDisplay_Run1223_Event2319_Sci.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event1226_Cer.png">
+      <div class="filename">EventDisplay_Run1223_Event1226_Cer.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event1226_Cer.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event1226_Cer.png" alt="EventDisplay_Run1223_Event1226_Cer.png">
+      </a>
+    </div>
+    <div class="plot" data-filename="EventDisplay_Run1223_Event1226_Sci.png">
+      <div class="filename">EventDisplay_Run1223_Event1226_Sci.png</div>
+      <a href="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event1226_Sci.png" target="_blank">
+        <img src="../../../plots/Run1223/EventDisplay_Band/EventDisplay_Run1223_Event1226_Sci.png" alt="EventDisplay_Run1223_Event1226_Sci.png">
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        filter: params.get("filter") || "",
+        regex: params.get("regex") === "1",
+        caseSensitive: params.get("case") === "1",
+      };
+    }
+
+    function updateURLParams(filter, regex, caseSensitive) {
+      const params = new URLSearchParams();
+      if (filter) params.set("filter", filter);
+      if (regex) params.set("regex", "1");
+      if (caseSensitive) params.set("case", "1");
+      const newUrl = `${window.location.pathname}?${params.toString()}`;
+      history.replaceState(null, "", newUrl);
+    }
+
+    function filterPlots() {
+      const input = document.getElementById("filterInput").value.trim();
+      const useRegex = document.getElementById("regexToggle").checked;
+      const caseSensitive = document.getElementById("caseToggle").checked;
+      const plots = document.getElementsByClassName("plot");
+
+      updateURLParams(input, useRegex, caseSensitive);
+
+      for (let plot of plots) {
+        const name = plot.getAttribute("data-filename");
+        let match = false;
+
+        if (useRegex) {
+          try {
+            const escaped = input.replace(/[-\/\^$+?.()|[\]{{}}]/g, '\\$&')
+                                 .replace(/\*/g, '.*')
+                                 .replace(/\?/g, '.');
+            const flags = caseSensitive ? "" : "i";
+            const regex = new RegExp(escaped, flags);
+            match = regex.test(name);
+          } catch (e) {
+            match = false;
+          }
+        } else {
+          const nameToTest = caseSensitive ? name : name.toLowerCase();
+          const inputToTest = caseSensitive ? input : input.toLowerCase();
+          match = nameToTest.includes(inputToTest);
+        }
+
+        plot.style.display = match ? "" : "none";
+      }
+    }
+
+    function clearFilter() {
+      document.getElementById("filterInput").value = "";
+      document.getElementById("regexToggle").checked = false;
+      document.getElementById("caseToggle").checked = false;
+      history.replaceState(null, "", window.location.pathname);
+      filterPlots();
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const { filter, regex, caseSensitive } = getQueryParams();
+      document.getElementById("filterInput").value = filter;
+      document.getElementById("regexToggle").checked = regex;
+      document.getElementById("caseToggle").checked = caseSensitive;
+      filterPlots();
+    });
+  </script>
+
+</body>
+</html>
